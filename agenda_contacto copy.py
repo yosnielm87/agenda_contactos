@@ -65,22 +65,39 @@ def listar_contactos(agenda):
 def agenda_contactos():
     agenda = {}
 
+    # Definir los handlers para cada opción
+    def agregar():
+        agregar_contacto(agenda)
+
+    def eliminar():
+        eliminar_contacto(ag=agenda)
+
+    def buscar():
+        buscar_contacto(agenda)
+
+    def listar():
+        listar_contactos(agenda)
+
+    def salir():
+        print("Cerrando la agenda de contactos...")
+
+    # Diccionario de handlers
+    # Un handler es una función que responde a un evento o acción específica. 
+    # Son las funciones que gestionan cada opción del menú.
+    handlers = {
+        "1": agregar, 
+        "2": eliminar, "3": buscar, "4": listar, "5": salir}
+
     while True:
         mostrar_menu()
         op = input("Por favor, elija una opción: ")
         print()
 
-        if op == "1":
-            agregar_contacto(agenda=agenda)
-        elif op == "2":
-            eliminar_contacto(ag=agenda)
-        elif op == "3":
-            buscar_contacto(agenda=agenda)
-        elif op == "4":
-            listar_contactos(agenda=agenda)
-        elif op == "5":
-            print("Cerrando la agenda de contactos...")
+        if op == "5":
+            handlers[op]()
             break
+        elif op in handlers:
+            handlers[op]()
         else:
             print("Por favor, escoja una opción válida.")
 

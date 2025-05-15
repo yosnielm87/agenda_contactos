@@ -77,7 +77,7 @@ def agenda_contactos():
 
     def listar():
         listar_contactos(agenda)
-
+ 
     def salir():
         print("Cerrando la agenda de contactos...")
 
